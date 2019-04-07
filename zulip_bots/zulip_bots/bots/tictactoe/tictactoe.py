@@ -27,7 +27,7 @@ class TicTacToeModel(object):
                      [0, 0, 0],
                      [0, 0, 0]]
 
-    def __init__(self, board: Any=None) -> None:
+    def __init__(self, board: Any = None) -> None:
         if board is not None:
             self.current_board = board
         else:
@@ -190,7 +190,7 @@ class TicTacToeModel(object):
             valid = False
         return valid
 
-    def make_move(self, move: str, player_number: int, computer_move: bool=False) -> Any:
+    def make_move(self, move: str, player_number: int, computer_move: bool = False) -> Any:
         if computer_move:
             return self.computer_move(self.current_board, player_number + 1)
         move_coords_str = coords_from_command(move)
@@ -203,7 +203,8 @@ class TicTacToeModel(object):
         row = (int(move_coords[1])) - 1
         column = (int(move_coords[0])) - 1
         if board[row][column] != 0:
-            raise BadMoveException('Make sure your space hasn\'t already been filled.')
+            raise BadMoveException(
+                'Make sure your space hasn\'t already been filled.')
         board[row][column] = player_number + 1
         return board
 
@@ -214,7 +215,8 @@ class TicTacToeMessageHandler(object):
     def parse_row(self, row: Tuple[int, int], row_num: int) -> str:
         ''' Takes the row passed in as a list and returns it as a string. '''
         row_chars = []
-        num_symbols = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:', ':nine:']
+        num_symbols = [':one:', ':two:', ':three:', ':four:',
+                       ':five:', ':six:', ':seven:', ':eight:', ':nine:']
         for i, e in enumerate(row):
             if e == 0:
                 row_chars.append(num_symbols[row_num * 3 + i])
