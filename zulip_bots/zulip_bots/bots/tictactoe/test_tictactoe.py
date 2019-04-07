@@ -98,15 +98,18 @@ class TestTicTacToeBot(BotTestCase, DefaultTests):
         self.assertEqual(response, expected_response)
 
     def test_is_valid_move(self) -> None:
+        board = [[0, 0, 0],
+                 [0, 0, 0],
+                 [1, 0, 2]]
         move = "1,2"
         response = True
-        self._test_is_valid_move(move, response)
+        self._test_is_valid_move(board, move, response)
 
         move = "4,4"
         response = False
-        self._test_is_valid_move(move, response)
+        self._test_is_valid_move(board, move, response)
 
-    def _test_is_valid_move(self, move: str, expected_response: bool) -> None:
+    def _test_is_valid_move(self, board: List[List[int]], move: str, expected_response: bool) -> None:
         model, message_handler = self._get_game_handlers()
         tictactoeboard = model(board)
         response = tictactoeboard.is_valid_move(move)
