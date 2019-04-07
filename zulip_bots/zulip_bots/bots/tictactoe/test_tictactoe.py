@@ -97,6 +97,21 @@ class TestTicTacToeBot(BotTestCase, DefaultTests):
         response = tictactoeboard.get_locations_of_char(board, 1)
         self.assertEqual(response, expected_response)
 
+    def test_is_valid_move(self) -> None:
+        move = "1,2"
+        response = True
+        self._test_is_valid_move(move, response)
+
+        move = "4,4"
+        response = False
+        self._test_is_valid_move(move, response)
+
+    def _test_is_valid_move(self, move: str, expected_response: bool) -> None:
+        model, message_handler = self._get_game_handlers()
+        tictactoeboard = model(board)
+        response = tictactoeboard.is_valid_move(move)
+        self.assertEqual(response, expected_response)
+
     def test_player_color(self) -> None:
         turn = 0
         response = ':cross_mark_button:'
