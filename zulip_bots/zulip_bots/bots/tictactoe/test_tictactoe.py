@@ -84,14 +84,14 @@ class TestTicTacToeBot(BotTestCase, DefaultTests):
         response = tictactoeboard.contains_winning_move(board)
         self.assertEqual(response, expected_response)
 
-    def test_get_location_of_char(self) -> None:
+    def test_get_locations_of_char(self) -> None:
         board = [[0, 0, 0],
                  [0, 0, 0],
                  [0, 0, 1]]
         response = [[2, 2]]
-        self._test_get_location_of_char(board, response)
+        self._test_get_locations_of_char(board, response)
 
-    def _test_get_location_of_char(self, board: List[List[int]], expected_response: List[List[int]]) -> None:
+    def _test_get_locations_of_char(self, board: List[List[int]], expected_response: List[List[int]]) -> None:
         model, message_handler = self._get_game_handlers()
         tictactoeboard = model(board)
         response = tictactoeboard.get_locations_of_char(board, 1)
